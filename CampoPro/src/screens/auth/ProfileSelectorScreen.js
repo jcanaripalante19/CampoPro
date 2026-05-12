@@ -32,6 +32,13 @@ export default function ProfileSelectorScreen({ navigation }) {
       <Card style={styles.card} onPress={() => goToProfile(roles.ADMIN)}>
         <Card.Title title="Administrador" subtitle="Control general de CampoPro" />
       </Card>
+
+      <Card style={styles.card} onPress={() => navigation.navigate('FirebaseTest')}>
+        <Card.Title
+          title="Prueba Firebase"
+          subtitle="Crear colecciones iniciales en Firestore"
+        />
+      </Card>
     </View>
   );
 }
