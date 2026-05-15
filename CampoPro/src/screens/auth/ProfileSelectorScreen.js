@@ -1,12 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../constants/colors';
 import routes from '../../constants/routes';
 import roles from '../../constants/roles';
+import { setActiveRole } from '../../redux/slices/profileSlice';
 
 export default function ProfileSelectorScreen({ navigation }) {
+  const dispatch = useDispatch();
+  const activeRole = useSelector((state) => state.profile.activeRole);
+
   const goToProfile = (role) => {
+    dispatch(setActiveRole(role));
     navigation.replace(routes.MAIN_TABS, { role });
   };
 
@@ -14,7 +20,7 @@ export default function ProfileSelectorScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Selecciona tu perfil</Text>
       <Text style={styles.subtitle}>
-        Esta pantalla simula los perfiles disponibles del usuario.
+        Perfil activo en Redux: {activeRole}
       </Text>
 
       <Card style={styles.card} onPress={() => goToProfile(roles.CLIENT)}>
