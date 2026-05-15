@@ -1,12 +1,62 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { Button, TextInput, ActivityIndicator } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 import colors from '../../constants/colors';
 import routes from '../../constants/routes';
+import { registerUser } from '../../services/authService';
+import { setAuthUser, setAuthLoading, setAuthError } from '../../redux/slices/authSlice';
+import { setAvailableRoles, setActiveRole } from '../../redux/slices/profileSlice';
+import roles from '../../constants/roles';
 
 export default function RegisterScreen({ navigation }) {
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [screenError, setScreenError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleRegister = async () => {
+    try {
+      setScreenError('');
+
+      if (!name || !email || !password) {
+        setScreenError('Completa nombre, correo y contraseña.');
+        return;
+      }
+
+      if (password.length < 6) {
+        setScreenError('La contraseña debe tener al menos 6 caracteres.');
+        return;
+      }
+
+      setLoading(true);
+      dispatch(setAuthLoading(true));
+
+      const newUser = await registerUser({ name, email, password });
+
+      dispatch(setAuthUser(newUser));
+      dispatch(setAvailableRoles([roles.CLIENT]));
+      dispatch(setActiveRole(roles.CLIENT));
+
+      navigation.navigate(routes.PROFILE_SELECTOR);
+    } catch (error) {
+      setScreenError(error.message);
+      dispatch(setAuthError(error.message));
+    } finally {
+      setLoading(false);
+      dispatch(setAuthLoading(false));
+    }
+  };
+
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Text style={styles.title}>Crear cuenta</Text>
       <Text style={styles.subtitle}>
         Todos los usuarios comienzan como clientes.
@@ -15,12 +65,16 @@ export default function RegisterScreen({ navigation }) {
       <TextInput
         label="Nombre"
         mode="outlined"
+        value={name}
+        onChangeText={setName}
         style={styles.input}
       />
 
       <TextInput
         label="Correo electrónico"
         mode="outlined"
+        value={email}
+        onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
         style={styles.input}
@@ -29,17 +83,27 @@ export default function RegisterScreen({ navigation }) {
       <TextInput
         label="Contraseña"
         mode="outlined"
+        value={password}
+        onChangeText={setPassword}
         secureTextEntry
         style={styles.input}
       />
 
-      <Button
-        mode="contained"
-        style={styles.button}
-        onPress={() => navigation.navigate(routes.PROFILE_SELECTOR)}
-      >
-        Registrarme
-      </Button>
+      {screenError ? (
+        <Text style={styles.error}>{screenError}</Text>
+      ) : null}
+
+      {loading ? (
+        <ActivityIndicator style={styles.loading} />
+      ) : (
+        <Button
+          mode="contained"
+          style={styles.button}
+          onPress={handleRegister}
+        >
+          Registrarme
+        </Button>
+      )}
 
       <Button
         mode="text"
@@ -47,7 +111,7 @@ export default function RegisterScreen({ navigation }) {
       >
         Ya tengo cuenta
       </Button>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -78,5 +142,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     paddingVertical: 4,
+  },
+  error: {
+    color: colors.danger,
+    marginBottom: 12,
+  },
+  loading: {
+    marginVertical: 18,
   },
 });

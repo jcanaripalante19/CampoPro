@@ -4,6 +4,7 @@ const routes = {
   REGISTER: 'Register',
   PROFILE_SELECTOR: 'ProfileSelector',
   MAIN_TABS: 'MainTabs',
+  PROFILE_SETTINGS: 'ProfileSettings',
 
   CLIENT_HOME: 'ClientHome',
   CLIENT_RESERVATIONS: 'ClientReservations',

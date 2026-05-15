@@ -5,7 +5,9 @@ import ClientNavigator from './ClientNavigator';
 import OwnerNavigator from './OwnerNavigator';
 import EmployeeNavigator from './EmployeeNavigator';
 import AdminNavigator from './AdminNavigator';
+import ProfileSettingsScreen from '../screens/shared/ProfileSettingsScreen';
 import colors from '../constants/colors';
+import routes from '../constants/routes';
 import roles from '../constants/roles';
 
 const Tab = createBottomTabNavigator();
@@ -37,6 +39,7 @@ export default function MainTabNavigator({ route }) {
           if (route.name === 'Dueño') iconName = 'business-outline';
           if (route.name === 'Empleado') iconName = 'calendar-outline';
           if (route.name === 'Admin') iconName = 'settings-outline';
+          if (route.name === 'Perfil') iconName = 'person-circle-outline';
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -57,6 +60,12 @@ export default function MainTabNavigator({ route }) {
       {role === roles.ADMIN && (
         <Tab.Screen name="Admin" component={AdminNavigator} />
       )}
+
+      <Tab.Screen
+        name="Perfil"
+        component={ProfileSettingsScreen}
+        options={{ title: 'Perfil' }}
+      />
     </Tab.Navigator>
   );
 }
