@@ -16,7 +16,15 @@ const routes = {
   CLIENT_RESERVATIONS: 'ClientReservations',
 
   OWNER_DASHBOARD: 'OwnerDashboard',
+  OWNER_FIELDS: 'OwnerFields',
+  OWNER_EMPLOYEES: 'OwnerEmployees',
+  OWNER_MAINTENANCE: 'OwnerMaintenance',
+  OWNER_RESERVATIONS: 'OwnerReservations',
+
   EMPLOYEE_DASHBOARD: 'EmployeeDashboard',
+  EMPLOYEE_RESERVATIONS: 'EmployeeReservations',
+  EMPLOYEE_MANUAL_RESERVATION: 'EmployeeManualReservation',
+
   ADMIN_DASHBOARD: 'AdminDashboard',
   ADMIN_SEED_DATA: 'AdminSeedData',
 };

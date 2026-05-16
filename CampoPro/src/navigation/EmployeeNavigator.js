@@ -1,6 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EmployeeDashboardScreen from '../screens/employee/EmployeeDashboardScreen';
+import EmployeeReservationsScreen from '../screens/employee/EmployeeReservationsScreen';
+import CreateManualReservationScreen from '../screens/employee/CreateManualReservationScreen';
 import colors from '../constants/colors';
 import routes from '../constants/routes';
 
@@ -19,6 +21,18 @@ export default function EmployeeNavigator() {
         name={routes.EMPLOYEE_DASHBOARD}
         component={EmployeeDashboardScreen}
         options={{ title: 'Empleado' }}
+      />
+
+      <Stack.Screen
+        name={routes.EMPLOYEE_RESERVATIONS}
+        component={EmployeeReservationsScreen}
+        options={{ title: 'Reservas' }}
+      />
+
+      <Stack.Screen
+        name={routes.EMPLOYEE_MANUAL_RESERVATION}
+        component={CreateManualReservationScreen}
+        options={{ title: 'Reserva manual' }}
       />
     </Stack.Navigator>
   );
