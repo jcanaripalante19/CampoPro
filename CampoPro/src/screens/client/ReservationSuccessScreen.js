@@ -4,38 +4,26 @@ import { Button, Card } from 'react-native-paper';
 import colors from '../../constants/colors';
 import routes from '../../constants/routes';
 
-export default function ClientHomeScreen({ navigation }) {
+export default function ReservationSuccessScreen({ route, navigation }) {
+  const { result, field, date, slot } = route.params;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Inicio cliente</Text>
-      <Text style={styles.subtitle}>
-        Busca campos deportivos y realiza reservas.
-      </Text>
+      <Text style={styles.title}>Reserva confirmada</Text>
+      <Text style={styles.subtitle}>Tu reserva se ha guardado correctamente.</Text>
 
       <Card style={styles.card}>
         <Card.Title
-          title="Buscar campos"
-          subtitle="Consulta campos disponibles y reserva un horario."
+          title={field.name}
+          subtitle={`Código: ${result.reservationCode}`}
         />
         <Card.Content>
+          <Text style={styles.text}>Fecha: {date}</Text>
+          <Text style={styles.text}>Hora: {slot.startTime} - {slot.endTime}</Text>
+          <Text style={styles.text}>Pago: {result.paymentCode}</Text>
+
           <Button
             mode="contained"
-            style={styles.button}
-            onPress={() => navigation.navigate(routes.CLIENT_SEARCH_FIELDS)}
-          >
-            Buscar campo
-          </Button>
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Title
-          title="Mis reservas"
-          subtitle="Consulta tus reservas confirmadas."
-        />
-        <Card.Content>
-          <Button
-            mode="outlined"
             style={styles.button}
             onPress={() => navigation.navigate(routes.CLIENT_RESERVATIONS)}
           >
@@ -56,7 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: colors.text,
+    color: colors.success,
     marginTop: 24,
     marginBottom: 8,
   },
@@ -68,10 +56,13 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     borderRadius: 18,
-    marginBottom: 14,
+  },
+  text: {
+    color: colors.textSecondary,
+    marginBottom: 8,
   },
   button: {
     borderRadius: 14,
-    marginTop: 12,
+    marginTop: 16,
   },
 });
