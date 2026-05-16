@@ -14,9 +14,66 @@ export default function AdminDashboardScreen({ navigation }) {
 
       <Card style={styles.card}>
         <Card.Title
-          title="Gestión SaaS"
-          subtitle="Negocios registrados, planes y pagos simulados."
+          title="Negocios"
+          subtitle="Ver negocios registrados y cambiar estado o plan."
         />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.ADMIN_BUSINESSES)}
+          >
+            Ver negocios
+          </Button>
+        </Card.Content>
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Title
+          title="Planes"
+          subtitle="Consultar planes Básico, Pro y Premium."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.ADMIN_PLANS)}
+          >
+            Ver planes
+          </Button>
+        </Card.Content>
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Title
+          title="Pagos de suscripción"
+          subtitle="Consultar pagos simulados de planes."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.ADMIN_SUBSCRIPTION_PAYMENTS)}
+          >
+            Ver pagos
+          </Button>
+        </Card.Content>
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Title
+          title="Reportes"
+          subtitle="Indicadores básicos de reservas e ingresos."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.ADMIN_REPORTS)}
+          >
+            Ver reportes
+          </Button>
+        </Card.Content>
       </Card>
 
       <Card style={styles.card}>
@@ -26,7 +83,7 @@ export default function AdminDashboardScreen({ navigation }) {
         />
         <Card.Content>
           <Button
-            mode="contained"
+            mode="outlined"
             style={styles.button}
             onPress={() => navigation.navigate(routes.ADMIN_SEED_DATA)}
           >

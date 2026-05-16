@@ -5,6 +5,8 @@ import OwnerReservationsScreen from '../screens/owner/OwnerReservationsScreen';
 import OwnerFieldsScreen from '../screens/owner/OwnerFieldsScreen';
 import OwnerEmployeesScreen from '../screens/owner/OwnerEmployeesScreen';
 import OwnerMaintenanceScreen from '../screens/owner/OwnerMaintenanceScreen';
+import OwnerVenuesScreen from '../screens/owner/OwnerVenuesScreen';
+import OwnerPlanScreen from '../screens/owner/OwnerPlanScreen';
 import colors from '../constants/colors';
 import routes from '../constants/routes';
 
@@ -30,7 +32,16 @@ export default function OwnerNavigator() {
         component={OwnerReservationsScreen}
         options={{ title: 'Reservas' }}
       />
-
+      <Stack.Screen
+        name={routes.OWNER_PLAN}
+        component={OwnerPlanScreen}
+        options={{ title: 'Mi Plan' }}
+      />
+      <Stack.Screen
+        name={routes.OWNER_VENUES}
+        component={OwnerVenuesScreen}
+        options={{ title: 'Sedes' }}
+      />
       <Stack.Screen
         name={routes.OWNER_FIELDS}
         component={OwnerFieldsScreen}

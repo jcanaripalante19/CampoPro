@@ -27,7 +27,21 @@ export default function OwnerDashboardScreen({ navigation }) {
           </Button>
         </Card.Content>
       </Card>
-
+      <Card style={styles.card}>
+        <Card.Title
+          title="Sedes"
+          subtitle="Consulta las sedes del negocio."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.OWNER_VENUES)}
+          >
+            Ver sedes
+          </Button>
+        </Card.Content>
+      </Card>
       <Card style={styles.card}>
         <Card.Title
           title="Campos"
@@ -43,7 +57,21 @@ export default function OwnerDashboardScreen({ navigation }) {
           </Button>
         </Card.Content>
       </Card>
-
+      <Card style={styles.card}>
+        <Card.Title
+          title="Mi Plan"
+          subtitle="Consulta límites del plan contratado."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.OWNER_PLAN)}
+          >
+            Ver mi plan
+          </Button>
+        </Card.Content>
+      </Card>
       <Card style={styles.card}>
         <Card.Title
           title="Empleados"

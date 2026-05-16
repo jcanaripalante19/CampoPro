@@ -16,6 +16,7 @@ const routes = {
   CLIENT_RESERVATIONS: 'ClientReservations',
 
   OWNER_DASHBOARD: 'OwnerDashboard',
+  OWNER_VENUES: 'OwnerVenues',
   OWNER_FIELDS: 'OwnerFields',
   OWNER_EMPLOYEES: 'OwnerEmployees',
   OWNER_MAINTENANCE: 'OwnerMaintenance',
@@ -26,7 +27,13 @@ const routes = {
   EMPLOYEE_MANUAL_RESERVATION: 'EmployeeManualReservation',
 
   ADMIN_DASHBOARD: 'AdminDashboard',
+  ADMIN_BUSINESSES: 'AdminBusinesses',
+  ADMIN_BUSINESS_DETAIL: 'AdminBusinessDetail',
+  ADMIN_PLANS: 'AdminPlans',
+  ADMIN_SUBSCRIPTION_PAYMENTS: 'AdminSubscriptionPayments',
+  ADMIN_REPORTS: 'AdminReports',
   ADMIN_SEED_DATA: 'AdminSeedData',
+  OWNER_PLAN: 'OwnerPlan',
 };
 
 export default routes;

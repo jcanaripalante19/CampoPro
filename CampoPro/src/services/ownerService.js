@@ -14,23 +14,9 @@ import roles from '../constants/roles';
 const DEMO_BUSINESS_ID = 'demo-business';
 const DEMO_VENUE_ID = 'demo-venue-central';
 
-export async function getOwnerReservations() {
+export async function getOwnerVenues() {
   const q = query(
-    collection(db, 'reservations'),
-    where('businessId', '==', DEMO_BUSINESS_ID)
-  );
-
-  const querySnapshot = await getDocs(q);
-
-  return querySnapshot.docs.map((item) => ({
-    id: item.id,
-    ...item.data(),
-  }));
-}
-
-export async function getOwnerFields() {
-  const q = query(
-    collection(db, 'fields'),
+    collection(db, 'venues'),
     where('businessId', '==', DEMO_BUSINESS_ID)
   );
 
