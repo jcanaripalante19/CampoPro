@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Card } from 'react-native-paper';
+import { Card, Button } from 'react-native-paper';
 import colors from '../../constants/colors';
+import routes from '../../constants/routes';
 
-export default function AdminDashboardScreen() {
+export default function AdminDashboardScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Panel administrador</Text>
@@ -14,8 +15,24 @@ export default function AdminDashboardScreen() {
       <Card style={styles.card}>
         <Card.Title
           title="Gestión SaaS"
-          subtitle="Aquí se mostrarán negocios registrados, planes y pagos simulados."
+          subtitle="Negocios registrados, planes y pagos simulados."
         />
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Title
+          title="Datos iniciales"
+          subtitle="Crear datos demo para la presentación."
+        />
+        <Card.Content>
+          <Button
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate(routes.ADMIN_SEED_DATA)}
+          >
+            Ir a datos iniciales
+          </Button>
+        </Card.Content>
       </Card>
     </View>
   );
@@ -42,5 +59,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card,
     borderRadius: 18,
+    marginBottom: 14,
+  },
+  button: {
+    borderRadius: 14,
+    marginTop: 8,
   },
 });

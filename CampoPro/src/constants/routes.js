@@ -12,6 +12,7 @@ const routes = {
   OWNER_DASHBOARD: 'OwnerDashboard',
   EMPLOYEE_DASHBOARD: 'EmployeeDashboard',
   ADMIN_DASHBOARD: 'AdminDashboard',
+  ADMIN_SEED_DATA: 'AdminSeedData',
 };
 
 export default routes;

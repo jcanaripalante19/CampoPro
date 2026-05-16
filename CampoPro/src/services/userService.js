@@ -1,6 +1,15 @@
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 
+function normalizeFirestoreData(data) {
+  return {
+    ...data,
+    createdAt: data.createdAt?.toDate
+      ? data.createdAt.toDate().toISOString()
+      : null,
+  };
+}
+
 export async function getUserProfile(uid) {
   const userRef = doc(db, 'users', uid);
   const userSnap = await getDoc(userRef);
@@ -11,7 +20,7 @@ export async function getUserProfile(uid) {
 
   return {
     id: userSnap.id,
-    ...userSnap.data(),
+    ...normalizeFirestoreData(userSnap.data()),
   };
 }
 
