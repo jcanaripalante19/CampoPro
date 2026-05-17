@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import colors from '../../constants/colors';
 import routes from '../../constants/routes';
 import { createReservationWithPayment } from '../../services/reservationService';
+import { scheduleReservationNotification } from '../../services/notificationService';
 
 export default function FakePaymentScreen({ route, navigation }) {
   const { field, date, slot } = route.params;
@@ -26,11 +27,18 @@ export default function FakePaymentScreen({ route, navigation }) {
         paymentMethod,
       });
 
+      const notificationResult = await scheduleReservationNotification({
+        fieldName: field.name,
+        date,
+        startTime: slot.startTime,
+      });
+
       navigation.replace(routes.CLIENT_RESERVATION_SUCCESS, {
         result,
         field,
         date,
         slot,
+        notificationResult,
       });
     } catch (paymentError) {
       setError(paymentError.message);

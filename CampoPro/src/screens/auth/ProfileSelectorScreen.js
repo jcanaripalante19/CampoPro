@@ -6,6 +6,7 @@ import colors from '../../constants/colors';
 import routes from '../../constants/routes';
 import roles from '../../constants/roles';
 import { setActiveRole } from '../../redux/slices/profileSlice';
+import { saveActiveRole } from '../../services/localStorageService';
 
 export default function ProfileSelectorScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -13,7 +14,8 @@ export default function ProfileSelectorScreen({ navigation }) {
   const availableRoles = useSelector((state) => state.profile.availableRoles);
   const user = useSelector((state) => state.auth.user);
 
-  const goToProfile = (role) => {
+  const goToProfile = async (role) => {
+    await saveActiveRole(role);
     dispatch(setActiveRole(role));
     navigation.replace(routes.MAIN_TABS, { role });
   };

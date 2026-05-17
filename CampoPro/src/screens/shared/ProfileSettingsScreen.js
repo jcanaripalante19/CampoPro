@@ -7,6 +7,7 @@ import routes from '../../constants/routes';
 import { logoutUser } from '../../services/authService';
 import { clearAuth } from '../../redux/slices/authSlice';
 import { clearProfile } from '../../redux/slices/profileSlice';
+import { clearSavedActiveRole } from '../../services/localStorageService';
 
 export default function ProfileSettingsScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export default function ProfileSettingsScreen({ navigation }) {
 
   const handleLogout = async () => {
     await logoutUser();
+    await clearSavedActiveRole();
+
     dispatch(clearAuth());
     dispatch(clearProfile());
 

@@ -5,8 +5,7 @@ import colors from '../../constants/colors';
 import routes from '../../constants/routes';
 
 export default function ReservationSuccessScreen({ route, navigation }) {
-  const { result, field, date, slot } = route.params;
-
+  const { result, field, date, slot, notificationResult } = route.params;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Reserva confirmada</Text>
@@ -21,7 +20,9 @@ export default function ReservationSuccessScreen({ route, navigation }) {
           <Text style={styles.text}>Fecha: {date}</Text>
           <Text style={styles.text}>Hora: {slot.startTime} - {slot.endTime}</Text>
           <Text style={styles.text}>Pago: {result.paymentCode}</Text>
-
+          <Text style={styles.text}>
+            Notificación: {notificationResult?.message || 'No programada'}
+          </Text>
           <Button
             mode="contained"
             style={styles.button}
